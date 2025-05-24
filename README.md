@@ -63,19 +63,6 @@ Renders `index.html`. You can use this to test or serve a frontend.
 
 ---
 
-### (Optional) `GET /health`
-
-Check if the API server is running.
-
-**Response:**
-```json
-{
-  "status": "ok"
-}
-```
-
----
-
 ## How It Works
 
 1. Reads the image and encodes it as a base64 data URL.
