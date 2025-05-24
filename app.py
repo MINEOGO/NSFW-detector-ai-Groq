@@ -5,7 +5,7 @@ import mimetypes
 import requests
 
 app = Flask(__name__)
-client = Groq(api_key="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")
+client = Groq(api_key="groq apikey https://console.groq.com/")
 
 @app.route("/")
 def index():
