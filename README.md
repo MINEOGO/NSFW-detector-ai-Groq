@@ -1,34 +1,42 @@
-# NSFW Detector
+# NSFW Detector API & Web Interface
 
-This is an open-source NSFW (Not Safe For Work) image detection web application powered by a simple API. It allows users to upload an image file or provide an image URL, and then detects whether the image contains NSFW content.
+A simple and efficient NSFW (Not Safe For Work) image detection API and frontend web interface powered by the **Groq NSFW detection API**.
+
+Users can upload images or submit image URLs to detect NSFW content with confidence scores and optional content descriptions.
 
 ---
 
-## How the Website Works
+## Table of Contents
 
-The front-end interface lets users either:
+- [Overview](#overview)  
+- [Features](#features)  
+- [API Endpoints](#api-endpoints)  
+- [Usage](#usage)  
+- [Installation](#installation)  
+- [Contributing](#contributing)  
+- [License](#license)  
 
-- Upload an image file from their device  
-- Or enter a direct image URL
+---
 
-Upon submission, the website will:
+## Overview
 
-1. If an image URL is provided:
-   - Send a POST request to the `/convert-url` API endpoint with the URL.
-   - The server converts the URL into image data (base64 encoded), returning it as `data_url`.
-   - The client converts this data URL into a `Blob` to send it as a file.
+This project provides:
 
-2. If an image file is uploaded directly:
-   - The client uses the file as-is.
+- A clean web UI for users to upload images or submit URLs for NSFW detection.
+- A RESTful API backend that processes images and returns NSFW classification using Groq API.
+- Image URL conversion to Base64 for easy processing.
+- Clear and detailed JSON responses indicating NSFW status, confidence, and tags.
 
-3. The image file/blob is sent via a POST request to the `/nsfw` API endpoint.
+---
 
-4. The `/nsfw` endpoint returns a JSON response with a `result` string indicating:
-   - Whether the image is NSFW ("yes" or "no")
-   - The confidence percentage
-   - Optionally, a textual description of the detection.
+## Features
 
-The result is then displayed on the webpage with clear color-coded feedback.
+- Upload image files for NSFW detection.
+- Submit publicly accessible image URLs.
+- Get quick responses with confidence percentages.
+- Detailed NSFW content description tags.
+- Easy-to-use REST API compatible with any client.
+- Simple frontend interface included.
 
 ---
 
@@ -36,10 +44,13 @@ The result is then displayed on the webpage with clear color-coded feedback.
 
 ### 1. POST `/convert-url`
 
-- **Description**: Converts an image URL into a base64 data URL that can be sent for NSFW detection.
-- **Request Body**: JSON
+**Purpose:** Converts a publicly accessible image URL into a Base64 encoded data URL for further NSFW detection.
+
+- **Request Headers:**  
+  `Content-Type: application/json`
+
+- **Request Body:**  
   ```json
   {
     "url": "https://example.com/image.jpg"
   }
-  ```
